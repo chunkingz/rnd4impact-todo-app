@@ -7,14 +7,17 @@ const TaskForm = ({ addTask }: TaskFormProps) => {
     const taskTitle = formData.get("task") as string;
     if (taskTitle.trim() === "") return;
     addTask(taskTitle);
+    e.currentTarget.reset();
   };
 
   return (
     <form onSubmit={handleSubmit} className="create">
-      <label htmlFor="">
+      <label htmlFor="task">
         <input type="text" name="task" placeholder="Enter a task" />
       </label>
-      <button type="submit">Submit</button>
+      <button type="submit" id="addBtn">
+        Add task
+      </button>
     </form>
   );
 };
