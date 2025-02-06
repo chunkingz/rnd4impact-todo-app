@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap");
 
 /* base styles */
 * {
@@ -14,7 +14,8 @@
   margin: 0 auto;
   border-bottom: 1px solid #f2f2f2;
 }
-.navbar h1 {
+.navbar h1,
+h2 {
   color: #f1356d;
 }
 .navbar .links {
@@ -35,10 +36,8 @@
 }
 h2 {
   font-size: 20px;
-  color: #f1356d;
   cursor: pointer;
 }
-
 
 /* task previews / list */
 .task-preview {
@@ -47,12 +46,12 @@ h2 {
   border-bottom: 1px solid #fafafa;
 }
 .task-preview:hover {
-  box-shadow: 1px 3px 5px rgba(0,0,0,0.1);
+  box-shadow: 1px 3px 5px rgba(0, 0, 0, 0.1);
 }
 .task-preview h2 {
   margin-bottom: 8px;
 }
-.task-preview a{
+.task-preview a {
   text-decoration: none;
 }
 
@@ -85,7 +84,9 @@ h2 {
 .create h2 {
   margin-bottom: 30px;
 }
-.create input, .create textarea, .create select {
+.create input,
+.create textarea,
+.create select {
   width: 100%;
   padding: 6px 10px;
   margin: 10px 0;
@@ -93,11 +94,22 @@ h2 {
   box-sizing: border-box;
   display: block;
 }
-.create button, #updateBtn {
+button#updateBtn,
+button#addBtn {
+  background: #1f741f;
+}
+button#deleteBtn {
   background: #f1356d;
+}
+button#addBtn,
+button#updateBtn,
+button#deleteBtn {
   color: #fff;
   border: 0;
   padding: 8px;
   border-radius: 8px;
   cursor: pointer;
+}
+button#addBtn:hover {
+  box-shadow: 5px 5px 16px 0 rgba(0, 0, 0, 0.24);
 }
