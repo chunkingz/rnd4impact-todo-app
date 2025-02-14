@@ -28,16 +28,17 @@ const TodoItem = ({
   return (
     <div className="task-preview">
       <h2 onClick={handleUpdate}>{task.title}</h2>
+      <p>Description: {task.description}</p>
       <p>
-        <i>Completed: {task.completed ? "Yes" : "No"}</i> &nbsp;
-        <button onClick={handleComplete} id="updateBtn">
-          update
-        </button>
-        &nbsp;
-        <button onClick={handleDelete} id="deleteBtn">
-          delete
-        </button>
+        <i>Completed: {task.completed ? "Yes" : "No"}</i>
       </p>
+      <button onClick={handleComplete} id="updateBtn">
+        Mark as completed
+      </button>
+      &nbsp;
+      <button onClick={handleDelete} id="deleteBtn">
+        Delete
+      </button>
     </div>
   );
 };

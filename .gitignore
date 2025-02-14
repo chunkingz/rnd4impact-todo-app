@@ -28,6 +28,8 @@ dist-ssr
 *.local
 
 # === Spring Boot (Backend) ===
+application.properties
+test/
 *.class
 *.log
 *.jar
@@ -80,3 +82,29 @@ surefire-reports/
 # Additional OS Files
 Thumbs.db
 ehthumbs.db
+
+
+## from backend
+
+HELP.md
+!.mvn/wrapper/maven-wrapper.jar
+!**/src/main/**/target/
+!**/src/test/**/target/
+
+### STS ###
+.apt_generated
+.classpath
+.factorypath
+.project
+.settings
+.springBeans
+.sts4-cache
+
+### NetBeans ###
+/nbproject/private/
+/nbbuild/
+/dist/
+/nbdist/
+/.nb-gradle/
+!**/src/main/**/build/
+!**/src/test/**/build/
