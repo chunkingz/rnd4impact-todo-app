@@ -9,7 +9,7 @@ const TodoList = ({
 }: TodoListProps) => {
   return (
     <div className="todo-list">
-      {tasks.map((task) => (
+      {tasks.content.map((task) => (
         <TodoItem
           key={task.id}
           task={task}

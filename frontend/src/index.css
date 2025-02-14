@@ -12,7 +12,10 @@
   align-items: center;
   max-width: 600px;
   margin: 0 auto;
-  border-bottom: 1px solid #f2f2f2;
+  border-bottom: 1px solid #f1f1f1;
+  position: sticky;
+  top: 0;
+  background-color: #fff;
 }
 .navbar h1,
 h2 {
@@ -31,8 +34,8 @@ h2 {
 }
 .content {
   max-width: 600px;
-  margin: 40px auto;
-  padding: 20px;
+  margin: 10px auto;
+  padding: 10px;
 }
 h2 {
   font-size: 20px;
@@ -48,7 +51,7 @@ h2 {
 .task-preview:hover {
   box-shadow: 1px 3px 5px rgba(0, 0, 0, 0.1);
 }
-.task-preview h2 {
+.task-preview h2, .task-preview p {
   margin-bottom: 8px;
 }
 .task-preview a {
@@ -112,4 +115,23 @@ button#deleteBtn {
 }
 button#addBtn:hover {
   box-shadow: 5px 5px 16px 0 rgba(0, 0, 0, 0.24);
+}
+
+.filter-container{
+  padding: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 100%;
+  gap: 10px;
+}
+
+.filter-container input{
+  flex: 1;
+  max-width: 200px;
+}
+
+.filter-container select{
+  flex: 0.5;
+  max-width: 150px;
 }

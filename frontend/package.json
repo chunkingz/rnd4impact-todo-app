@@ -1,7 +1,7 @@
 {
-  "name": "todo-app-ui",
+  "name": "todo-app-frontend",
   "private": true,
-  "version": "0.0.1",
+  "version": "0.0.2",
   "author": "Fortune King",
   "type": "module",
   "scripts": {
