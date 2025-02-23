@@ -29,7 +29,6 @@ dist-ssr
 
 # === Spring Boot (Backend) ===
 application.properties
-test/
 *.class
 *.log
 *.jar

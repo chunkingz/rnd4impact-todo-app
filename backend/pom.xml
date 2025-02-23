@@ -10,7 +10,7 @@
     </parent>
     <groupId>com.chunkingz.todo</groupId>
     <artifactId>backend</artifactId>
-    <version>0.0.2</version>
+    <version>0.0.3</version>
     <name>todo-app-backend</name>
     <description>This is the spring boot backend API for the todo app</description>
     <url/>
