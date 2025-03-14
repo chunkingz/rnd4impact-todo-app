@@ -1,8 +1,16 @@
 import { useState, useEffect } from "react";
 import TodoList from "./TodoList";
 import TaskForm from "./TaskForm";
-import { PaginatedTasks, TaskType } from "../interfaces/TodoListProps";
-import { HEADERS as headers, BASE_URL } from "../utilities/constants";
+import {
+  PaginatedTasks,
+  TaskType,
+  UserCredentialsType,
+} from "../interfaces/TodoListProps";
+import {
+  HEADERS as headers,
+  LOGIN_URL,
+  TASK_URL,
+} from "../utilities/constants";
 
 const Home = () => {
   const [tasks, setTasks] = useState<PaginatedTasks | null>(null);
@@ -12,6 +20,16 @@ const Home = () => {
   const [direction, setDirection] = useState<string>("ASC");
   const [page, setPage] = useState<number>(0);
   const [size, setSize] = useState<number>(10);
+  const [auth, setAuth] = useState<boolean>(false);
+  const [userCredentials] = useState<UserCredentialsType | null>(null);
+
+  useEffect(() => {
+    if (userCredentials) logIn();
+  }, []);
+
+  useEffect(() => {
+    if (auth) getTasks();
+  }, [auth]);
 
   useEffect(() => {
     const delay = setTimeout(() => {
@@ -19,19 +37,56 @@ const Home = () => {
       getTasks();
     }, 500);
     return () => clearTimeout(delay);
-  }, [titleFilter]);
+  }, [titleFilter, sortBy, direction, page, size]);
 
-  useEffect(() => {
-    getTasks();
-  }, [sortBy, direction, page, size]);
+  // Try to login
+  const logIn = async () => {
+    try {
+      const res = await fetch(LOGIN_URL, {
+        method: "POST",
+        credentials: "include",
+        headers,
+        body: JSON.stringify(userCredentials),
+      });
+
+      if (!res.ok) throw new Error("Login failed");
+
+      setAuth(true);
+    } catch (e) {
+      console.error(`Error logging in: ${e as Error}`);
+    }
+  };
+
+  //  const logOut = async () => {
+  //   try {
+  //     const res = await fetch(LOGOUT_URL, {
+  //       method: "POST",
+  //       credentials: "include",
+  //       headers
+  //     });
+
+  //     if(!res.ok) throw new Error("Logout failed");
+
+  //     setAuth(true);
+  //   } catch (e) {
+  //     console.error(`Error logging out: ${e as Error}`);
+  //   }
+  //  }
 
   // Fetch all tasks
   const getTasks = async () => {
     try {
       setIsPending(true);
+
       const res = await fetch(
-        `${BASE_URL}?title=${titleFilter}&sortBy=${sortBy}&direction=${direction}&page=${page}&size=${size}`
+        `${TASK_URL}?title=${titleFilter}&sortBy=${sortBy}&direction=${direction}&page=${page}&size=${size}`,
+        {
+          method: "GET",
+          credentials: "include",
+          headers,
+        }
       );
+
       const tasks: PaginatedTasks = await res.json();
 
       setTasks(tasks);
@@ -51,8 +106,9 @@ const Home = () => {
       completed: false,
     };
     try {
-      const res = await fetch(`${BASE_URL}`, {
+      const res = await fetch(`${TASK_URL}`, {
         method: "POST",
+        credentials: "include",
         body: JSON.stringify(newTask),
         headers,
       });
@@ -80,8 +136,9 @@ const Home = () => {
     if (!updatedTitle || !updatedDescription) return;
 
     try {
-      const res = await fetch(`${BASE_URL}/${updatedTask.id}`, {
+      const res = await fetch(`${TASK_URL}/${updatedTask.id}`, {
         method: "PUT",
+        credentials: "include",
         body: JSON.stringify({
           title: updatedTitle,
           description: updatedDescription,
@@ -111,8 +168,9 @@ const Home = () => {
   // Set task as completed
   const toggleTaskCompletion = async (taskId: number) => {
     try {
-      const res = await fetch(`${BASE_URL}/${taskId}`, {
+      const res = await fetch(`${TASK_URL}/${taskId}`, {
         method: "PATCH",
+        credentials: "include",
         headers,
       });
 
@@ -139,7 +197,10 @@ const Home = () => {
     const userConfirmed = confirm("Are you sure you want to delete this task?");
     if (userConfirmed) {
       try {
-        await fetch(`${BASE_URL}/${taskId}`, { method: "DELETE" });
+        await fetch(`${TASK_URL}/${taskId}`, {
+          method: "DELETE",
+          credentials: "include",
+        });
 
         setTasks((prevTasks) =>
           prevTasks
