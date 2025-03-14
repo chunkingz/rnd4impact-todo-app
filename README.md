@@ -1,4 +1,4 @@
-# RND4IMPACT TODO APP
+# Task Manager App
 
 A High-Availability, Low-Latency Task Management System with Real-Time Collaboration.
 
@@ -11,6 +11,7 @@ A High-Availability, Low-Latency Task Management System with Real-Time Collabora
 
 - [ ] Frontend (React)
 - [ ] Backend (Java Spring boot)
+- [ ] Security (JWT)
 - [ ] Database (Postgres)
 - [ ] Docker
 - [ ] Jenkins
