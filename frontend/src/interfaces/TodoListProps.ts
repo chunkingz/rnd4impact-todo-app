@@ -49,3 +49,8 @@ export interface ButtonProps {
   children: React.ReactNode;
   type: "button" | "submit";
 }
+
+export type UserCredentialsType = {
+  username: string,
+  password: string
+}
